@@ -12,10 +12,10 @@
             type="text" 
             name="query" 
             placeholder="Search by name or email" 
-            value="{{ query }}"> <!-- Keep the query visible in the input -->
+            value="{{ query }}"> <!-- Keep the query visible in the input, the above name=query is where data is passing to view as query -->
         <button type="submit">Search</button>
     </form>
-    
+
     <ul>
         {% for contact in contacts %}
             <li>
