@@ -5,6 +5,9 @@ from django.db import models # type: ignore
 from django import forms # type: ignore
 from django.contrib import messages  # type: ignore
 
+def home(request):
+    return render(request, 'contacts/home.html')
+
 # Create your views here.
 def contact_list(request):
     #contacts = Contacts.objects.all() #fetching all the contacts

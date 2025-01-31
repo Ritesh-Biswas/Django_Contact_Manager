@@ -1,0 +1,15 @@
+{% extends 'contacts/base.html' %}
+
+{% block title %}Home - Contact Manager{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Welcome to Contact Manager</h1>
+    <p class="lead">Easily manage your contacts with our simple and user-friendly interface.</p>
+    
+    <img src="https://source.unsplash.com/800x400/?business,people" class="img-fluid rounded shadow-sm mb-4" alt="Contact Manager">
+
+    <a href="{% url 'contact_list' %}" class="btn btn-primary btn-lg">View Contacts</a>
+    <a href="{% url 'add_contact' %}" class="btn btn-success btn-lg">Add New Contact</a>
+</div>
+{% endblock %}
