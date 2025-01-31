@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact List</title>
-</head>
-<body>
-    <h1>Contact List</h1>
+{% extends 'contacts/base.html' %}
 
-    <!-- Add the search form -->
-    <form method="get" action="">
-        <input 
-            type="text" 
-            name="query" 
-            placeholder="Search by name or email" 
-            value="{{ query }}"> <!-- Keep the query visible in the input, the above name=query is where data is passing to view as query -->
-        <button type="submit">Search</button>
-    </form>
+{% block title %}Contact List{% endblock %}
 
-    <ul>
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Contact List</h2>
+    <a href="{% url 'add_contact' %}" class="btn btn-primary">+ Add Contact</a>
+</div>
+
+<!-- Search Form -->
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Search contacts..." value="{{ query }}">
+        <button type="submit" class="btn btn-dark">Search</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for contact in contacts %}
-            <li>
-                <a href="{{ contact.id }}/">{{ contact.name }}</a>
-            </li>
+        <tr>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.email }}</td>
+            <td>{{ contact.phone }}</td>
+            <td>{{ contact.address }}</td>
+            <td>
+                <a href="{% url 'edit_contact' contact.id %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete_contact' contact.id %}" class="btn btn-sm btn-danger" onclick="return confirmDelete();">Delete</a>
+            </td>
+        </tr>
         {% endfor %}
-    </ul>
-    <a href="add/">Add New Contact</a>
-</body>
-</html>
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this contact?");
+    }
+</script>
+
+{% endblock %}
